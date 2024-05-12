@@ -8,6 +8,7 @@ const articleContentId = readmoreConfig.articleContentId || '';
 const pjaxSelector = readmoreConfig.pjaxSelector || '';
 const pjaxCssClass = readmoreConfig.pjaxCssClass || '';
 const excludeRules = readmoreConfig.excludes == undefined ? [] : readmoreConfig.excludes;
+const includeRules = readmoreConfig.includes || []
 const pluginEnabled = readmoreConfig && (readmoreConfig.enable == undefined ? false : readmoreConfig.enable);
 const mobileEnabled = readmoreConfig && (readmoreConfig.allowMobile == undefined ? false : readmoreConfig.allowMobile);
 
@@ -31,17 +32,20 @@ else {
 
 		var isExcluded = false;
 		const postPath = "/" + data.path;
-		if (excludeRules && excludeRules.length > 0) {
+		if (includeRules?.length) { // 优先判断 includeRules
+			// 有一个匹配到就为 false，即不排除
+			isExcluded = !includeRules.some(rule => (match(rule, postPath)?.matches))
+		} else if (excludeRules && excludeRules.length > 0) {
 			for (var i = 0; i < excludeRules.length; i++) {
-			  if (match(excludeRules[i], postPath).matches) {
-				isExcluded = true;
-				break;
-			  }
+				if (match(excludeRules[i], postPath).matches) {
+					isExcluded = true;
+					break;
+				}
 			}
 		}
-		
+
 		var postEnabled = data.readmore == undefined ? true : data.readmore;
-		
+
 		if (postEnabled && !isExcluded && validateMdFile(data.full_source)) {
 			const random = readmoreConfig.random || 1;
 			const interval = readmoreConfig.interval || 60;
@@ -52,9 +56,9 @@ else {
 			const tocSelector = readmoreConfig.tocSelector || '';
 			const cssUrl = readmoreConfig.cssUrl || 'https://qiniu.techgrow.cn/readmore/dist/hexo.css';
 			const libUrl = readmoreConfig.libUrl || 'https://qiniu.techgrow.cn/readmore/dist/readmore.js';
-			
+
 			const content = '<div id="readmore-container">' + data.content + '</div>';
-	
+
 			const script = `
 				<link rel="stylesheet" type="text/css" href="${cssUrl}">
 				<script src="${libUrl}" type="text/javascript"></script>
@@ -86,10 +90,10 @@ else {
 				}
 				</script>
 			`;
-	
+
 			data.content = content + script;
 		}
-	
+
 		return data;
 	});
 }
