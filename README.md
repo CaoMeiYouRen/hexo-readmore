@@ -90,26 +90,27 @@ readmore:
 
 ## 参数说明
 
-| 参数             | 类型            | 必填 | 默认值                                                | 说明 |
-| ---------------- | --------------- | ---- | ----------------------------------------------------- | ---- |
-| enable           | Boolean         | 是   | `false`                                               | -    |
-| blogId           | String          | 是   |                                                       | -    |
-| name             | String          | 是   |                                                       | -    |
-| keyword          | String          | 是   |                                                       | -    |
-| qrcode           | String          | 是   |                                                       | -    |
-| libUrl           | String          | 否   | `https://qiniu.techgrow.cn/readmore/dist/readmore.js` | -    |
-| cssUrl           | String          | 否   | `https://qiniu.techgrow.cn/readmore/dist/hexo.css`    | -    |
-| debug            | Boolean         | 否   | `true`                                                | -    |
-| height           | String / Number | 否   | `auto`                                                | -    |
-| expires          | Number          | 否   | `365`                                                 | -    |
-| interval         | Number          | 否   | `60`                                                  | -    |
-| allowMobile      | Boolean         | 否   | `false`                                               | -    |
-| random           | Number          | 否   | `1`                                                   | -    |
-| excludes         | Array           | 否   |                                                       | -    |
-| tocSelector      | String          | 否   |                                                       | -    |
-| articleContentId | String          | 否   | `readmore-container`                                  | -    |
-| pjaxSelector     | String          | 否   |                                                       | -    |
-| pjaxCssClass     | String          | 否   |                                                       | -    |
+| 参数             | 类型            | 必填 | 默认值                                                | 说明                                       |
+| ---------------- | --------------- | ---- | ----------------------------------------------------- | ------------------------------------------ |
+| enable           | Boolean         | 是   | `false`                                               | -                                          |
+| blogId           | String          | 是   |                                                       | -                                          |
+| name             | String          | 是   |                                                       | -                                          |
+| keyword          | String          | 是   |                                                       | -                                          |
+| qrcode           | String          | 是   |                                                       | -                                          |
+| libUrl           | String          | 否   | `https://qiniu.techgrow.cn/readmore/dist/readmore.js` | -                                          |
+| cssUrl           | String          | 否   | `https://qiniu.techgrow.cn/readmore/dist/hexo.css`    | -                                          |
+| debug            | Boolean         | 否   | `true`                                                | -                                          |
+| height           | String / Number | 否   | `auto`                                                | -                                          |
+| expires          | Number          | 否   | `365`                                                 | -                                          |
+| interval         | Number          | 否   | `60`                                                  | -                                          |
+| allowMobile      | Boolean         | 否   | `false`                                               | -                                          |
+| random           | Number          | 否   | `1`                                                   | -                                          |
+| excludes         | Array           | 否   |                                                       | 排除引流                                   |
+| includes         | Array           | 否   |                                                       | 需要引流。注意，配置该项后 `excludes` 无效 |
+| tocSelector      | String          | 否   |                                                       | -                                          |
+| articleContentId | String          | 否   | `readmore-container`                                  | -                                          |
+| pjaxSelector     | String          | 否   |                                                       | -                                          |
+| pjaxCssClass     | String          | 否   |                                                       | -                                          |
 
 ## 构建 Hexo
 
